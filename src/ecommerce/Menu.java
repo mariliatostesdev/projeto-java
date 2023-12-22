@@ -57,6 +57,8 @@ public class Menu {
 			System.out.println("                                        ");
 			System.out.println("           2 - Fazer Cadastro           ");
 			System.out.println("                                        ");
+			System.out.println("           3 - Sair                     ");
+			System.out.println("                                        ");
 			System.out.println("****************************************");
 			System.out.println("Qual a opção desejada?                  ");
 			System.out.println("                                        ");
@@ -64,7 +66,7 @@ public class Menu {
 
 			option = input.nextInt();
 
-			while (option != 1 && option != 2) {
+			while (option != 1 && option != 2 && option != 3) {
 				System.out.println("\n\nCategoria inválida.\n\n");
 				System.out.println("****************************************");
 				System.out.println("Qual a opção desejada?                  ");
@@ -72,6 +74,8 @@ public class Menu {
 				System.out.println("           1 - Fazer Login              ");
 				System.out.println("                                        ");
 				System.out.println("           2 - Fazer Cadastro           ");
+				System.out.println("                                        ");
+				System.out.println("           3 - Sair                     ");
 				System.out.println("                                        ");
 				option = input.nextInt();
 			}
@@ -112,9 +116,14 @@ public class Menu {
 				pressEnter();
 				break;
 			}
-//			default -> {
-//				System.out.println("Opção Inválida");
-//			}
+			case 3 -> {
+				input.close();
+				System.out.println("\nPrograma finalizado.");
+				System.exit(0);
+			}
+			default -> {
+				System.out.println("Opção Inválida");
+			}
 			}
 
 			System.out.println("****************************************");
@@ -126,6 +135,8 @@ public class Menu {
 			System.out.println("   1 - Escolher categoria de produtos   ");
 			System.out.println("                                        ");
 			System.out.println("   2 - Ver todos os produtos            ");
+			System.out.println("                                        ");
+			System.out.println("   3 - Sair                             ");
 			System.out.println("                                        ");
 			System.out.println("****************************************");
 			System.out.println("Qual a opção desejada?                  ");
@@ -151,8 +162,15 @@ public class Menu {
 					}
 
 				} while (category != 1 && category != 2);
-			} else {
+			} else if (option2 == 2) {
 				produtos.listarTodos();
+			} else if (option2 == 3) {
+				input.close();
+				System.out.println("\nPrograma finalizado.");
+				System.exit(0);
+
+			} else {
+				System.out.println("\n\nOpção inválida.\n\n");
 			}
 
 			System.out.println("\nDeseja comprar algum produto? (S/N)");
