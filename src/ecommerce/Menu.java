@@ -1,5 +1,7 @@
 package ecommerce;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import ecommerce.controller.ProdutoController;
@@ -8,6 +10,15 @@ import ecommerce.model.Casaco;
 import ecommerce.util.Cores;
 
 public class Menu {
+
+	public static void pressEnter() {
+		try {
+			System.out.println("\n\nPressione Enter para continuar");
+			System.in.read();
+		} catch (IOException e) {
+			System.out.println("\nVocê pressionou uma tecla diferente de Enter!");
+		}
+	}
 
 	public static void main(String[] args) {
 
@@ -27,12 +38,12 @@ public class Menu {
 		int option, option2, category;
 		String option3;
 		int chosenProductId;
-		String email,  password, address;
+		String email, password, address;
 
 		// atributos pra adicionar mais pra frente no projeto (Quero continuar fazendo)
-			// int paymentMethod;
-			// Boolean loginSuccess;
-			// Boolean wantToBuy;
+		// int paymentMethod;
+		// Boolean loginSuccess;
+		// Boolean wantToBuy;
 
 		while (true) {
 			System.out.println(Cores.TEXT_BLACK_BOLD + Cores.ANSI_CYAN_BACKGROUND);
@@ -52,6 +63,19 @@ public class Menu {
 			System.out.println(Cores.TEXT_RESET);
 
 			option = input.nextInt();
+
+			while (option != 1 && option != 2) {
+				System.out.println("\n\nCategoria inválida.\n\n");
+				System.out.println("****************************************");
+				System.out.println("Qual a opção desejada?                  ");
+				System.out.println("                                        ");
+				System.out.println("           1 - Fazer Login              ");
+				System.out.println("                                        ");
+				System.out.println("           2 - Fazer Cadastro           ");
+				System.out.println("                                        ");
+				option = input.nextInt();
+			}
+
 			input.nextLine(); // Limpando cache
 
 			switch (option) {
@@ -67,7 +91,7 @@ public class Menu {
 
 				System.out.println("\n****************************************");
 				System.out.println("Login feito com sucesso.\n\nBem vindo(a)!");
-
+				pressEnter();
 				break;
 			}
 			case 2 -> {
@@ -85,11 +109,12 @@ public class Menu {
 				System.out.println("\n****************************************");
 				System.out.println("Conta criada com sucesso.\n\nBem vindo(a)!");
 
+				pressEnter();
 				break;
 			}
-			default -> {
-				System.out.println("Opção Inválida");
-			}
+//			default -> {
+//				System.out.println("Opção Inválida");
+//			}
 			}
 
 			System.out.println("****************************************");
@@ -136,6 +161,13 @@ public class Menu {
 			if (option3.equalsIgnoreCase("S")) {
 				System.out.println("\nDigite o ID do produto que deseja comprar: ");
 				chosenProductId = input.nextInt();
+
+				while (chosenProductId != 1 && chosenProductId != 2) {
+					System.out.println("\n\nOpção inválida!");
+					System.out.println("\nDigite o ID do produto que deseja comprar: ");
+					chosenProductId = input.nextInt();
+				}
+
 				produtos.buyProduct(chosenProductId);
 			} else if (option3.equalsIgnoreCase("N")) {
 				System.out.println("\nPoxa, tudo bem.\nVolte sempre!");
@@ -144,4 +176,5 @@ public class Menu {
 		}
 
 	}
+
 }
